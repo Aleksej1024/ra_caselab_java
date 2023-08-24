@@ -1,0 +1,21 @@
+//Создание файла базы данных, таблицы сошласно условию и заполнение её тестовыми данными
+sqlite3 ra.db;
+open ra.db;
+CREATE TABLE workers (
+	id integer PRIMARY KEY,
+	surname text,
+	experience integer);
+)
+INSERT INTO workers (surname, experience) VALUES ("Ivanov", 10),("Petrov", 12),("Sidorov", 14);
+//Отображение построенной таблицы
+SELECT * FROM workers;
+//Запрос, который возвращает фамилию сотрудника со вторым максимальным опытом работы
+//Работает он следующим образом: 
+	//1) Выбираем максимальный опыт работы (SELECT MAX (experience) FROM workers)
+	//2) Выбираем фамилии работников с опытом меньшим максимальному из шага 1 (SELECT 		
+		surname FROM workers WHERE experience < )
+	//3) Сортируем фамилии по убыванию (c помощью DESC) опыта работы (ORDER BY experience 	
+		ESC)
+	//4)Выбираем первую строку (LIMIT 1)
+	//Текст полного запроса
+SELECT surname FROM workers WHERE experience < (SELECT MAX (experience) FROM workers)ORDER BY experience DESC LIMIT 1;
